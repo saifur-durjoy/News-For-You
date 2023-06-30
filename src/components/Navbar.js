@@ -2,6 +2,24 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 
 export class Navbar extends Component {
+    constructor(){
+        super();
+        this.state = {
+            searchText: ""
+        }
+    };
+
+    handleChange = (e)=> {
+        this.setState({
+            searchText: e.target.value
+        })
+    }
+
+    handleSearch = (event)=> {
+        event.preventDefault();
+        this.props.searchNav(this.state.searchText)
+    }
+  
   render() {
     return (
       <div>
@@ -35,11 +53,15 @@ export class Navbar extends Component {
                             <Link className="nav-link active" aria-current="page" to="/health">Health</Link>
                         </li>
                      </ul>
-                </div>
-                <div className="form-check form-switch text-light">
-                    <input onClick={this.props.toggleColor} className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault"/>
-                    <label className="form-check-label" htmlFor="flexSwitchCheckDefault">Dark Mode</label>
-                </div>
+                     <div className="form-check form-switch text-light mx-4">
+                        <input onClick={this.props.toggleColor} className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault"/>
+                         <label className="form-check-label" htmlFor="flexSwitchCheckDefault">Dark Mode</label>
+                    </div>
+                    <form className="d-flex" role="search">
+                      <input onChange={this.handleChange} value={this.state.searchText} className="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
+                      <button onClick={this.handleSearch} className="btn btn-outline-success" type="submit">Search</button>
+                    </form>
+                </div>               
             </div>
         </nav>
     </div>

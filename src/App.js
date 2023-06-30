@@ -5,7 +5,13 @@ import News from './components/News';
 import {BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 function App() {
+  const [searchParameter, setsearchParameter] = useState("")
   const [mode, setmode] = useState('light')
+  const apikey = "532b2e17dc014ae3bfa91063bb5f400f"
+
+  const searchNav = (searchText)=>{
+    setsearchParameter(searchText)
+  }
   
   const toggleColor = ()=>{
         console.log('toggle clicked')
@@ -21,16 +27,16 @@ function App() {
   return (
     <Router> 
         <div className="App">
-          <Navbar toggleColor={toggleColor}/>  
+          <Navbar toggleColor={toggleColor} searchNav={searchNav}/>  
         </div>       
       <Routes>
-        <Route path="/" element={<News pageSize="20" category="general" mode={mode}/>} />
-        <Route path="/sports" element={<News key="sports" pageSize="20" category="sports" mode={mode}/>} />
-        <Route path="/business" element={<News key="sports" pageSize="20" category="business"/>} />
-        <Route path="/entertainment" element={<News key="entertainment" pageSize="20" category="entertainment" mode={mode}/>} />
-        <Route path="/science" element={<News key="scienc" pageSize="20" category="science"/>}  mode={mode}/>
-        <Route path="/technology" element={<News key="technology" pageSize="20" category="technology" mode={mode}/>} />
-        <Route path="/health" element={<News key="healt" pageSize="20" category="health" mode={mode}/>} />
+        <Route path="/" element={<News pageSize="20" category="general" mode={mode} apikey={apikey}/>} />
+        <Route path="/sports" element={<News key="sports" pageSize="20" category="sports" mode={mode} apikey={apikey}/>} />
+        <Route path="/business" element={<News key="business" pageSize="20" category="business" mode={mode} apikey={apikey}/>} />
+        <Route path="/entertainment" element={<News key="entertainment" pageSize="20" category="entertainment" mode={mode} apikey={apikey}/>} />
+        <Route path="/science" element={<News key="scienc" pageSize="20" category="science" mode={mode} apikey={apikey}/>} />
+        <Route path="/technology" element={<News key="technology" pageSize="20" category="technology" mode={mode} apikey={apikey}/>} />
+        <Route path="/health" element={<News key="healt" pageSize="20" category="health" mode={mode} apikey={apikey}/>} />
       </Routes>
     </Router>
    
