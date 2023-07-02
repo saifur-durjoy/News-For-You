@@ -1,13 +1,7 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 
-function Navbar ({handleSearch, handleChange, query, toggleColor}) {
-    // const onSearch = (event) =>{
-    //     event.preventDefault();
-    //     handleSearch(query);
-    // }
-    
-  
+function Navbar ({handleSearch, handleChange, query, toggleColor}) { 
     return (
       <div>
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -44,11 +38,6 @@ function Navbar ({handleSearch, handleChange, query, toggleColor}) {
                         <input onClick={toggleColor} className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault"/>
                          <label className="form-check-label" htmlFor="flexSwitchCheckDefault">Dark Mode</label>
                     </div>
-                    {/* <form className="d-flex" role="search">
-                      <input onChange={handleChange} value={query} className="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
-
-                      <button onClick={onSearch} className="btn btn-outline-success" type="submit">Search</button>
-                    </form> */}
                 </div>               
             </div>
         </nav>

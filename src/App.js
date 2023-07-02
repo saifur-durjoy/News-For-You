@@ -6,7 +6,7 @@ import {BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 function App() {
   const [mode, setmode] = useState('light')
-  const apikey = "532b2e17dc014ae3bfa91063bb5f400f"
+  const apikey = "b39872ea828243339d83fc378107e2b8"
   
   const toggleColor = ()=>{
         console.log('toggle clicked')

@@ -8,6 +8,7 @@ function News (props) {
     const [loading, setloading] = useState(false)
     const [totalResults, settotalResults] = useState(0)
     const [query, setquery] = useState('')
+    const [filteredArticles, setfilteredArticles] = useState([])
 
     const updateNews = async ()=> {
         let url = `https://newsapi.org/v2/top-headlines?country=us&category=${props.category}&apiKey=${props.apikey}&pageSize=${props.pageSize}&page=${page}`
@@ -16,6 +17,7 @@ function News (props) {
         let parsedData = await data.json();
         console.log(parsedData.articles)
         setarticles(parsedData.articles)
+        setfilteredArticles(parsedData.articles)
         settotalResults(parsedData.totalResults)
         setloading(false)
         filterData();
@@ -57,11 +59,15 @@ function News (props) {
     const onSearch = () =>{
         console.log("working on search")
         console.log(query)
-        articles.filter((e)=>{
+        const newData = articles.filter((e)=>{
             return e.title.toLowerCase().includes(query);
-        }).map((value)=>{
-           return console.log(value.title) 
         })
+
+        if (query==='') {
+            setfilteredArticles(articles);
+        } else {
+            setfilteredArticles(newData);
+        }
     }
   
     return (
@@ -77,9 +83,7 @@ function News (props) {
         <h1 className={`my-5 text-${props.mode==='dark' ? 'light' : 'dark'}`}> NewsForYou - Top News  </h1>
         {loading===true && <Spinner/>}
         <div className="row">
-            {!loading && articles.filter((e)=>{
-            return e.title.toLowerCase().includes('nba');
-        }).map((element)=>{
+            {!loading && filteredArticles.map((element)=>{
               return <div className="col-md-4" key={element.url}>
                 <NewPara title={element.title} description={element.description?element.description.slice(0,120):""} 
                          imgSrc={!element.urlToImage?"https://scitechdaily.com/images/Alpha-Centauri-A-and-B-scaled.jpg":element.urlToImage} url={element.url} 
