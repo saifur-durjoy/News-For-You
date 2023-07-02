@@ -1,13 +1,12 @@
-import React, { Component } from 'react'
+import React from 'react'
 
-export class NewPara extends Component {
-  render() {
-    let {title, description, imgSrc, url, publishedAt, mode} = this.props
+function NewPara (props) {
+    const {title, description, imgSrc, url, publishedAt, mode} = props
     // rgb(186 236 216)
 
     let colorEditor = {
-        color: this.props.mode==='dark' ? 'light' : 'dark',
-        backgroundColor: this.props.mode==='dark' ? '#d0ecba' : 'white'
+        color: mode==='dark' ? 'light' : 'dark',
+        backgroundColor: mode==='dark' ? '#d0ecba' : 'white'
     }
 
     return (
@@ -23,7 +22,6 @@ export class NewPara extends Component {
         </div>
       </div>
     )
-  }
 }
 
 export default NewPara

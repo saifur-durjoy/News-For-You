@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
 import loading from '../spinner.gif'
 
-export class Spinner extends Component {
-  render() {
+function Spinner () {
     return (
       <div className='d-flex justify-content-center'>
         <div className="row">
@@ -11,7 +10,7 @@ export class Spinner extends Component {
         </div>        
       </div>
     )
-  }
 }
 
 export default Spinner
+
