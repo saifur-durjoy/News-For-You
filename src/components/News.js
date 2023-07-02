@@ -7,6 +7,7 @@ function News (props) {
     const [page, setpage] = useState(1)
     const [loading, setloading] = useState(false)
     const [totalResults, settotalResults] = useState(0)
+    const [query, setquery] = useState('')
 
     const updateNews = async ()=> {
         let url = `https://newsapi.org/v2/top-headlines?country=us&category=${props.category}&apiKey=${props.apikey}&pageSize=${props.pageSize}&page=${page}`
@@ -44,9 +45,34 @@ function News (props) {
         setpage(page+1)
         await updateNews();   
     }
+
+    const handleChange = (e)=>{
+        setquery(e.target.value)
+        console.log(query);
+    }
+    const handleSearch = (e)=>{
+        e.preventDefault();
+        onSearch();
+    }
+    const onSearch = () =>{
+        console.log("working on search")
+        console.log(query)
+        articles.filter((e)=>{
+            return e.title.toLowerCase().includes(query);
+        }).map((value)=>{
+           return console.log(value.title) 
+        })
+    }
   
     return (
     <>
+    <div className="conatiner mx-4 my-2">
+        <form className="d-flex conatiner mx-4 my-4" role="search">
+            <input onChange={handleChange} value={query} className="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
+            <button onClick={handleSearch} className="btn btn-outline-success" type="submit">Search</button>
+        </form>
+    </div>
+
     <div className="container my-3 text-center">
         <h1 className={`my-5 text-${props.mode==='dark' ? 'light' : 'dark'}`}> NewsForYou - Top News  </h1>
         {loading===true && <Spinner/>}
