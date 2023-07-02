@@ -5,13 +5,8 @@ import News from './components/News';
 import {BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 function App() {
-  const [searchParameter, setsearchParameter] = useState("")
   const [mode, setmode] = useState('light')
   const apikey = "532b2e17dc014ae3bfa91063bb5f400f"
-
-  const searchNav = (searchText)=>{
-    setsearchParameter(searchText)
-  }
   
   const toggleColor = ()=>{
         console.log('toggle clicked')
@@ -27,7 +22,7 @@ function App() {
   return (
     <Router> 
         <div className="App">
-          <Navbar toggleColor={toggleColor} searchNav={searchNav}/>  
+          <Navbar toggleColor={toggleColor}/>  
         </div>       
       <Routes>
         <Route path="/" element={<News pageSize="20" category="general" mode={mode} apikey={apikey}/>} />

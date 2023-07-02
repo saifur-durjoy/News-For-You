@@ -13,10 +13,21 @@ function News (props) {
         setloading(true)
         let data = await fetch(url);
         let parsedData = await data.json();
+        console.log(parsedData.articles)
         setarticles(parsedData.articles)
         settotalResults(parsedData.totalResults)
         setloading(false)
+        filterData();
 
+    }
+
+    const filterData = async ()=>{
+        console.log("hello")
+        articles.filter((e)=>{
+            return e.title.toLowerCase().includes('nba');
+        }).map((value)=>{
+           return console.log(value.title) 
+        })
     }
 
     useEffect(() => {
@@ -40,7 +51,9 @@ function News (props) {
         <h1 className={`my-5 text-${props.mode==='dark' ? 'light' : 'dark'}`}> NewsForYou - Top News  </h1>
         {loading===true && <Spinner/>}
         <div className="row">
-            {!loading && articles.map((element)=>{
+            {!loading && articles.filter((e)=>{
+            return e.title.toLowerCase().includes('nba');
+        }).map((element)=>{
               return <div className="col-md-4" key={element.url}>
                 <NewPara title={element.title} description={element.description?element.description.slice(0,120):""} 
                          imgSrc={!element.urlToImage?"https://scitechdaily.com/images/Alpha-Centauri-A-and-B-scaled.jpg":element.urlToImage} url={element.url} 
