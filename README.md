@@ -1,3 +1,6 @@
+# News For You is a daily news portal web app built using React.js. 
+All the global news are fetched from a third party API named google NewsAPI. This web app features news by category selection option, dark mode toggling option and a news search option.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
